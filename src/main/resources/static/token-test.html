@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Token Test</title>
+  <style>
+    body { font-family: monospace; padding: 40px; background: #f5f5f5; }
+    .box { background: white; padding: 20px; border-radius: 8px; word-break: break-all; }
+    h2 { color: #333; }
+    button { margin-top: 12px; padding: 8px 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>JWT Token</h2>
+  <div class="box" id="token">토큰이 없습니다.</div>
+  <button onclick="copy()">복사</button>
+  <script>
+    const token = new URLSearchParams(location.search).get('token');
+    if (token) document.getElementById('token').textContent = token;
+    function copy() { navigator.clipboard.writeText(token); alert('복사됐습니다.'); }
+  </script>
+</body>
+</html>
