@@ -15,11 +15,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
+    private String providerId;
+
+    @Column(unique = true)
     private String email;
 
     @Column(nullable = false)
     private String nickname;
+
+    private String profileImageUrl;
 
     private String mbtiType;
 
