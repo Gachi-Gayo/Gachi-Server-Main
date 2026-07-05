@@ -34,5 +34,10 @@ public class Route {
 
     private Integer taxiFare;
 
-    private Integer fuelCost;
+    public void update(int duration, int distance, int tollCost, int taxiFare) {
+        this.duration = duration;
+        this.distance = distance;
+        this.tollCost = tollCost;
+        this.taxiFare = taxiFare;
+    }
 }

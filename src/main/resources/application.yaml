@@ -42,3 +42,6 @@ jwt:
 app:
   oauth2:
     redirect-uri: ${FRONTEND_REDIRECT_URI}
+
+kakao:
+  rest-api-key: ${KAKAO_REST_API_KEY}
