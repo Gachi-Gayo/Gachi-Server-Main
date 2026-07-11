@@ -45,3 +45,4 @@ out/
 ### CLAUDE ###
 CLAUDE.md
 .claude/
+implementation_plan.md
