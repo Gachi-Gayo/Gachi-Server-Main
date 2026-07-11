@@ -34,4 +34,19 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private MobilityLevel mobilityLevel;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
+    @Column(unique = true)
+    private String inviteCode;
+
+    public void assignChildRole(String inviteCode) {
+        this.role = UserRole.CHILD;
+        this.inviteCode = inviteCode;
+    }
+
+    public void assignParentRole() {
+        this.role = UserRole.PARENT;
+    }
 }
