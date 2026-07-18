@@ -49,4 +49,10 @@ public class User {
     public void assignParentRole() {
         this.role = UserRole.PARENT;
     }
+
+    public void updateOAuthProfile(String email, String nickname, String profileImageUrl) {
+        this.email = email;
+        this.nickname = nickname;
+        this.profileImageUrl = profileImageUrl;
+    }
 }
