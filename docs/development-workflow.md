@@ -18,6 +18,8 @@ Figma 재확인 → Linear 이슈 → Worktree/브랜치 → Slack 시작
 
 ## Slack 템플릿
 
+작업 시작·수동 작업 요청·작업 차단·리뷰 준비 완료·주간 현황은 `.agents/skills/slack-report`의 렌더링·검증·봇 발송 경로만 사용한다. Slack 커넥터 직접 발송은 금지한다.
+
 ### 작업 시작
 
 ```md
