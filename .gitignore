@@ -43,8 +43,6 @@ out/
 **/application-local.yaml
 
 ### Codex ###
-AGENTS.md
 ARCHITECTURE.md
-.agents/
 .codex/
 implementation_plan.md
