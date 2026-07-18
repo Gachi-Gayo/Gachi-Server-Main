@@ -1,6 +1,5 @@
 package com.gachi.server.global.auth;
 
-import com.gachi.server.global.security.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    private final JwtUtil jwtUtil;
+    private final AuthService authService;
 
     @Value("${app.oauth2.redirect-uri}")
     private String redirectUri;
@@ -27,7 +27,13 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                                         Authentication authentication) throws IOException {
         OAuth2User principal = (OAuth2User) authentication.getPrincipal();
         Long userId = (Long) principal.getAttributes().get("USER_ID");
-        String token = jwtUtil.generateToken(userId);
-        getRedirectStrategy().sendRedirect(request, response, redirectUri + "?token=" + token);
+        AuthService.TokenPair tokens = authService.issueTokens(userId);
+        response.addHeader("Set-Cookie", AuthController.refreshCookie(tokens.refreshToken()).toString());
+        String targetUrl = UriComponentsBuilder.fromUriString(redirectUri)
+                .queryParam("accessToken", tokens.accessToken())
+                .build()
+                .encode()
+                .toUriString();
+        getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
 }

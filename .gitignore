@@ -42,7 +42,7 @@ out/
 !.env.example
 **/application-local.yaml
 
-### CLAUDE ###
-CLAUDE.md
-.claude/
+### Codex ###
+ARCHITECTURE.md
+.codex/
 implementation_plan.md

@@ -27,6 +27,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         KakaoOAuth2Attributes attrs = KakaoOAuth2Attributes.from(oAuth2User.getAttributes());
 
         User user = userRepository.findByProviderId(attrs.getProviderId())
+                .map(existingUser -> {
+                    existingUser.updateOAuthProfile(attrs.getEmail(), attrs.getNickname(), attrs.getProfileImageUrl());
+                    return existingUser;
+                })
                 .orElseGet(() -> userRepository.save(User.builder()
                         .providerId(attrs.getProviderId())
                         .email(attrs.getEmail())

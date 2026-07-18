@@ -41,6 +41,9 @@ public class User {
     @Column(unique = true)
     private String inviteCode;
 
+    @Column(length = 64)
+    private String refreshTokenHash;
+
     public void assignChildRole(String inviteCode) {
         this.role = UserRole.CHILD;
         this.inviteCode = inviteCode;
@@ -48,5 +51,15 @@ public class User {
 
     public void assignParentRole() {
         this.role = UserRole.PARENT;
+    }
+
+    public void updateOAuthProfile(String email, String nickname, String profileImageUrl) {
+        this.email = email;
+        this.nickname = nickname;
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public void updateRefreshTokenHash(String refreshTokenHash) {
+        this.refreshTokenHash = refreshTokenHash;
     }
 }
