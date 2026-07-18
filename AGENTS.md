@@ -29,7 +29,7 @@
 - 사용자에게 보이는 Linear 이슈, Slack 메시지, GitHub PR 제목과 본문은 모두 **한국어**로 작성한다. 코드 식별자와 고유 기술명은 예외다.
 - PR 생성 시 반드시 `.github/PULL_REQUEST_TEMPLATE.md`의 모든 섹션을 채운다. `gh pr create` 등으로 본문을 직접 지정할 때에도 템플릿을 생략하거나 영어 `Summary`/`Validation` 형식으로 대체하지 않는다.
 - PR URL은 GitHub가 반환한 정식 URL이 실제로 열리는 것을 확인한 뒤 Linear와 Slack에 같은 URL로 기록한다.
-- Slack은 작업 시작, 수동 작업 요청, 작업 차단, 리뷰 준비 완료, 주간 현황에만 보내며 `docs/development-workflow.md`의 고정 Markdown 템플릿을 그대로 사용한다. URL은 항상 `<URL|표시 이름>`으로 쓴다.
+- Slack은 작업 시작, 수동 작업 요청, 작업 차단, 리뷰 준비 완료, 주간 현황에만 보내며 `.agents/skills/slack-report`의 렌더링·검증·봇 발송 경로만 사용한다. Slack 커넥터 직접 발송은 금지한다. URL은 항상 `<URL|표시 이름>`으로 쓴다.
 
 ## 문서 관리
 

@@ -1,0 +1,8 @@
+{
+  "issue": "JIN-17",
+  "flow": "Slack 봇 고정 보고 자동화",
+  "linear_url": "https://linear.app/jinhyeongpark/issue/JIN-17/slack-봇-고정-보고-자동화",
+  "branch": "chore/jin-17-slack-report-bot",
+  "scope": "고정 템플릿 렌더링·검증 스크립트와 Slack 봇 발송 경로 구축",
+  "verification": "Python 단위 테스트, 실제 Slack 봇 API 발송"
+}
