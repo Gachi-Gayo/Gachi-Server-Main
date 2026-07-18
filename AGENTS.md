@@ -2,12 +2,13 @@
 
 이 저장소에서 작업하는 모든 Codex 에이전트가 따라야 하는 공통 작업 규칙이다. 개인 대화 상태와 비밀값은 저장소에 두지 않는다.
 
-## 시작 순서
+## 작업 방식
 
-1. `ADR.md`와 `ARCHITECTURE.md`가 있으면 읽는다.
-2. 제품 기능을 계획·구현하기 전, 최신 [Figma Feature list](https://www.figma.com/design/OJfSNQEMxvWXIXUM33cc5c/26-%EA%B4%80%EA%B4%91%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%9C%EC%9A%A9-%EA%B3%B5%EB%AA%A8%EC%A0%84?node-id=109-52&m=dev)를 다시 확인한다.
-3. 작업 단위는 작은 UI가 아니라 사용자 흐름이다. 흐름별 Figma node ID는 온보딩 `397:2848`, 홈보드 `340:3638`, 계획 `340:3579`, 여행 기록 `397:2849`, 마이페이지 `397:2990`이다. 계획·여행 기록은 시작 직전 완성 여부를 확인한다.
-4. gachi-server Linear 프로젝트에 이슈를 만들고, Figma 기반 사용자 목표·화면 순서/분기·백엔드 범위·완료 조건·제외 범위와 정확한 Figma 링크를 기록한다.
+- **계획 모드:** 사용자가 `/plan`, `계획`, `검토`, `설계`를 요청하면 `.agents/skills/plan`을 사용한다. 명시적 승인 전에는 코드·문서 파일을 수정하거나 Linear 이슈, 브랜치/Worktree, Slack 알림을 만들지 않는다.
+- **즉시 구현 모드:** 사용자가 `바로 구현해줘`처럼 명시하면 최신 Figma 확인 후 Linear 이슈, 브랜치, Slack 시작 알림, 구현을 진행한다.
+- 계획을 실행으로 전환하는 유일한 신호는 `계획 승인 및 구현 시작`이다. `.agents/skills/implement`를 사용한다.
+- 제품 기능은 계획·구현 전 최신 [Figma Feature list](https://www.figma.com/design/OJfSNQEMxvWXIXUM33cc5c/26-%EA%B4%80%EA%B4%91%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%99%9C%EC%9A%A9-%EA%B3%B5%EB%AA%A8%EC%A0%84?node-id=109-52&m=dev)를 다시 확인한다.
+- 작업 단위는 사용자 흐름이다. 프레임은 온보딩 `397:2848`, 홈보드 `340:3638`, 계획 `340:3579`, 여행 기록 `397:2849`, 마이페이지 `397:2990`이다.
 
 ## 브랜치·상태
 
@@ -28,10 +29,11 @@
 - 사용자에게 보이는 Linear 이슈, Slack 메시지, GitHub PR 제목과 본문은 모두 **한국어**로 작성한다. 코드 식별자와 고유 기술명은 예외다.
 - PR 생성 시 반드시 `.github/PULL_REQUEST_TEMPLATE.md`의 모든 섹션을 채운다. `gh pr create` 등으로 본문을 직접 지정할 때에도 템플릿을 생략하거나 영어 `Summary`/`Validation` 형식으로 대체하지 않는다.
 - PR URL은 GitHub가 반환한 정식 URL이 실제로 열리는 것을 확인한 뒤 Linear와 Slack에 같은 URL로 기록한다.
-- Slack은 작업 시작, 수동 작업 요청, 작업 차단, 리뷰 준비 완료, 주간 현황에만 보내며 `.agents/docs/development-workflow.md`의 고정 Markdown 템플릿을 그대로 사용한다. URL은 항상 `<URL|표시 이름>`으로 쓴다.
+- Slack은 작업 시작, 수동 작업 요청, 작업 차단, 리뷰 준비 완료, 주간 현황에만 보내며 `docs/development-workflow.md`의 고정 Markdown 템플릿을 그대로 사용한다. URL은 항상 `<URL|표시 이름>`으로 쓴다.
 
 ## 문서 관리
 
 - `ADR.md`: 중요한 구조·기술 결정의 이유와 트레이드오프를 기록·갱신한다.
 - `ARCHITECTURE.md`: 도메인 경계, 패키지, 인증·요청·외부 연동 흐름이 바뀌면 같은 작업에서 갱신한다.
+- `docs/development-workflow.md`: 사람이 읽는 상세 운영 흐름과 메시지 템플릿이다.
 - `.codex/`와 로컬 비밀값은 개인용이며 Git에 올리지 않는다.
